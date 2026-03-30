@@ -31,11 +31,63 @@ public class CalculatorApp extends Application {
         // Step 3: Create Label for result
        Label resultLabel = new Label("Result: ");
         // Step 4: HBox for buttons
-       
+        HBox buttonBox = new HBox();
+        buttonBox.setSpacing(10);
+        buttonBox.getChildren().addAll(addButton, subButton, mulButton, divButton);
         // Step 5: VBox main layout
-       
+        VBox mainLayout = new VBox();
+        mainLayout.setSpacing(10);
+        mainLayout.getChildren().addAll(textField1, textField2, buttonBox, resultLabel);
         // Step 6: Event handling for buttons
-       
+        addButton.setOnAction(e -> {
+            try {
+                double num1 = Double.parseDouble(textField1.getText());
+                double num2 = Double.parseDouble(textField2.getText());
+                double result = num1 + num2;
+                resultLabel.setText("Result: " + result);
+            } catch (Exception ex) {
+                resultLabel.setText("Error: Invalid input");
+            }
+        });
+
+        subButton.setOnAction(e -> {
+            try {
+                double num1 = Double.parseDouble(textField1.getText());
+                double num2 = Double.parseDouble(textField2.getText());
+                double result = num1 - num2;
+                resultLabel.setText("Result: " + result);
+            } catch (Exception ex) {
+                resultLabel.setText("Error: Invalid input");
+            }
+        });
+
+        mulButton.setOnAction(e -> {
+            try {
+                double num1 = Double.parseDouble(textField1.getText());
+                double num2 = Double.parseDouble(textField2.getText());
+                double result = num1 * num2;
+                resultLabel.setText("Result: " + result);
+            } catch (Exception ex) {
+                resultLabel.setText("Error: Invalid input");
+            }
+        });
+
+        divButton.setOnAction(e -> {
+            try {
+                double num1 = Double.parseDouble(textField1.getText());
+                double num2 = Double.parseDouble(textField2.getText());
+
+                if (num2 == 0) {
+                    resultLabel.setText("Error: Division by zero");
+                } else {
+                    double result = num1 / num2;
+                    resultLabel.setText("Result: " + result);
+                }
+            } catch (Exception ex) {
+                resultLabel.setText("Error: Invalid input");
+            }
+        });
+
         // Step 7: Create scene and show stage
        
     }
